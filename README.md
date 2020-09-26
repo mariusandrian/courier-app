@@ -1,4 +1,4 @@
-# Courier-app
+# Courier App
 
 This app allows Customers to send package delivery requests and track their package status. At the company side, the admins can assign packages to couriers and set the status of the packages.
 
