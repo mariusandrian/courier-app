@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Login from '../components/Login';
 import AdminHome from '../components/AdminHome';
 import CustomerHome from  '../components/CustomerHome';
+import Navbar from '../components/Navbar';
 
 export class Home extends Component {
     constructor(props) {
@@ -20,13 +21,15 @@ export class Home extends Component {
                     error={this.props.error}
                 />
                 : 
-                this.props.typeIndicator === 2 ?
+                this.props.typeIndicator === "2" ?
                     <AdminHome 
                         currentUser={this.props.currentUser}
+                        logout={this.props.logout}
                     />
                 :
                     <CustomerHome 
                         currentUser={this.props.currentUser}
+                        logout={this.props.logout}
                     />
             }
             </React.Fragment>

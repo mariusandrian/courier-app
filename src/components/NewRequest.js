@@ -31,7 +31,8 @@ export class NewRequest extends Component {
                 contents: this.state.contents,
                 pickupAddress: this.state.pickupAddress,
                 deliveryAddress: this.state.deliveryAddress,
-                status: "Processing"
+                status: "Processing",
+                courierId: ""
             },
             withCredentials: true,
             url: `${REACT_APP_SERVER_URL}/package`

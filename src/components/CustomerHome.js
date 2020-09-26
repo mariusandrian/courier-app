@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Navbar from 'react-bootstrap/Navbar'
 import Endpoints from '../config/endpoints';
 import { Link } from 'react-router-dom';
 
@@ -21,11 +22,13 @@ export class CustomerHome extends Component {
             url: `${REACT_APP_SERVER_URL}/package/submit/${this.props.currentUser._id}`
         })
         .then(res => {
-
             this.setState({
                 requests : res.data.data
             })
         })
+    }
+    handleLogOut = () => {
+        this.props.logout();
     }
     componentDidMount () {
         this.getRequests();
@@ -33,8 +36,18 @@ export class CustomerHome extends Component {
     render() {
         return (
             <React.Fragment>
-                <h1>Courier App</h1>
-                <h2>Welcome,  {this.props.currentUser.username}</h2>
+                <Navbar>
+                    <Navbar.Brand href="#home">Courier App</Navbar.Brand>
+                    <Navbar.Toggle />
+                    <Navbar.Collapse className="justify-content-end">
+                        <Navbar.Text>
+                            Signed in as: {this.props.currentUser.username} 
+                        </Navbar.Text>
+                        <Link to="/">
+                        <Button onClick={this.handleLogOut}>Log Out</Button>
+                    </Link>
+                    </Navbar.Collapse>
+                </Navbar>
                 <Link to="/new"><Button>Create New Request</Button></Link>
                 <div className="request-container">
                     {this.state.requests !== undefined ? 

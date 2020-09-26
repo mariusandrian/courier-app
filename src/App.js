@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import Home from './components/Home';
+import SignUp from './components/SignUp';
+import NewRequest from './components/NewRequest';
+import ProcessRequest from './components/ProcessRequest';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { withRouter } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
-
-import SignUp from './components/SignUp';
-
 import axios from 'axios';
 import Endpoints from './config/endpoints';
-import NewRequest from './components/NewRequest';
 
 const REACT_APP_SERVER_URL = Endpoints.REACT_APP_SERVER_URL;
 
@@ -86,7 +85,7 @@ class App extends Component {
             isLogIn: true,
             currentUser: {
               ...this.state.currentUser,
-              user_id: id,
+              _id: id,
               username: username
             },
             loginEmail: "",
@@ -106,45 +105,27 @@ class App extends Component {
           error: error.response.data.err
         })
     });
-};
-handleChange = (event) => {
-  this.setState({ [event.target.id]: event.target.value })
-}
+  };
+  handleChange = (event) => {
+    this.setState({ [event.target.id]: event.target.value })
+  }
   // Logout
   logout = () => {
     console.log('trying to logout in FE')
-    // await sessionService.logOut();
-    axios({
-      method: "GET",
-      withCredentials: true,
-      url: `${REACT_APP_SERVER_URL}/logout`
-    })
-    // Reset Local Storage
     localStorage.clear();
-
-    // Reset App State
     this.resetAppState();
-
-  }
-
-  // Reset Updated Current User
-  resetUpdatedCurrentUser = () => {
-    const currentUser = localStorage.getItem('currentUser');
-    // const parsedUser = JSON.parse(currentUser)
-    this.setState({
-      currentUser: JSON.parse(currentUser)
-    })
   }
 
   resetAppState = () => {
     this.setState({
-      isLogIn: false,
       currentUser: {
         username: "",
-        user_id: "",
-        avatar: "https://www.kayawell.com/Data/UserContentImg/2018/3/b1b977c9-671f-47af-8956-d4037e5a82fd.jpg",
-        hasWrittenToday: false
-      },
+        _id: "",
+        },
+      loginEmail: "",
+      loginPassword: "",
+      isLogIn: false,
+      error: ""
     })
   }
   componentDidMount () {
@@ -166,6 +147,8 @@ handleChange = (event) => {
                     login={this.login}
                     error={this.state.error}
                     currentUser={this.state.currentUser}
+                    logout={this.logout}
+                    typeIndicator={this.state.typeIndicator}
                   />          
                 }
                 />
@@ -176,6 +159,19 @@ handleChange = (event) => {
                     currentUser={this.state.currentUser}
                   />
                   : <Redirect to="/"/>
+                }
+                />
+                <Route path="/request/process/:id" render={(props)=>
+                    <ProcessRequest
+                      {...props}
+                      currentUser={this.state.currentUser}
+                      logout={this.logout}
+                    />} 
+                  />
+                <Route exact path="/signup" render={(props) => 
+                  <SignUp
+                    {...props}
+                  />
                 }
                 />
             </Switch>

@@ -32,7 +32,7 @@ export class Login extends Component {
                       </Alert>
                     : ''}
                     <Button variant="primary" type="submit">
-                        Submit
+                        Log In
                     </Button>
                 </Form>
                 </div>
