@@ -11,7 +11,7 @@ This app allows Customers to send package delivery requests and track their pack
 5. Log out
 
 ### Company
-1. Login (user must be created manually in backedn with typeIndicator = 2)
+1. Login (user must be created manually in backenn with typeIndicator = 2)
 2. See all delivery requests
 3. Assign couriers and set status to the delivery request
 4. See existing couriers and add more
@@ -22,6 +22,10 @@ This app allows Customers to send package delivery requests and track their pack
 - React Bootstrap
 - Node.js
 - MongoDB
+
+## To use
+Once repo is cloned mongoDB needs to be setup in the system.
+Afterwards, you can run `nodemon` for the backend and `npm start` for the front end from their respective folders.
 
 ## Available Scripts
 
