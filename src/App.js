@@ -3,6 +3,7 @@ import Home from './components/Home';
 import SignUp from './components/SignUp';
 import NewRequest from './components/NewRequest';
 import ProcessRequest from './components/ProcessRequest';
+import Couriers from './components/Couriers';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { withRouter } from 'react-router-dom'
@@ -173,6 +174,16 @@ class App extends Component {
                     {...props}
                   />
                 }
+                />
+                <Route exact path="/couriers" render={(props) => 
+                localStorage.getItem('isLogIn') ?
+                  <Couriers
+                    {...props}
+                    currentUser={this.state.currentUser}
+                    logout={this.logout}
+                  />
+                  : <Redirect to="/"/>
+                } 
                 />
             </Switch>
           </div>

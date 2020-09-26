@@ -3,6 +3,7 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav';
 import Endpoints from '../config/endpoints';
 import { Link } from 'react-router-dom';
 
@@ -43,6 +44,14 @@ export class AdminHome extends Component {
                 <Navbar>
                     <Navbar.Brand href="#home">Courier App</Navbar.Brand>
                     <Navbar.Toggle />
+                    <Navbar.Collapse>
+                    <Nav.Link>
+                        <Link to="/">Home</Link>
+                    </Nav.Link>
+                    <Nav.Link>
+                        <Link to="/couriers">Couriers</Link>
+                    </Nav.Link>
+                    </Navbar.Collapse>
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text>
                             Signed in as: {this.props.currentUser.username} 

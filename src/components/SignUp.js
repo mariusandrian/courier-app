@@ -36,10 +36,14 @@ export class Login extends Component {
             url: `${REACT_APP_SERVER_URL}/signup`
         })
         .then( res => {
-            if(res.status) {
+            if ("err" in res.data.data) {
+                this.setState({
+                    error: res.data.data.err
+                })
+            } else {
                 this.props.history.push("/");
-            };
             }
+        }
         )
     }
     render() {

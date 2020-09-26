@@ -66,7 +66,6 @@ export class CustomerHome extends Component {
                         })
                     : ''}
                 </div>
-
             </React.Fragment>
         )
     }
